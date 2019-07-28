@@ -21,15 +21,16 @@
           <form action="{{url_for('login')}}" method="post">
               <input type="hidden" name="login" value="login">
               <div class="form-group row">
-                <label for="username" class="col-md-3">Email address</label>
-                <input type="text" class="form-control col-md-8" name="username" id="username" aria-describedby="emailHelp" placeholder="Your Email ID">
+                <label for="username" class="col-md-3">Username</label>
+                <input type="text" class="form-control col-md-8" name="username" id="username" aria-describedby="emailHelp" placeholder="Your Username">
               </div>
               <div class="form-group row">
                 <label for="password" class="col-md-3">Password</label>
                 <input type="password" class="form-control col-md-8" name="password" id="password" placeholder="Password"  pattern=".{5,}"  required title="Password needs to be atleast 5 chars long">
               </div>
-              <div class="mx-auto">
-                <button type="submit" class="btn-lg btn-primary mt-5 mx-auto d-block">Log-In</button>
+              <div class="mx-auto text-center">
+                <button type="submit" class="btn btn-lg btn-primary mt-5 mx-2 d-inline-block">Log-In</button>
+                <a href="{{url_for('signup')}}" class="btn btn-lg btn-primary mt-5 mx-2 d-inline-block" role="button" >Sign-In</a>
               </div>
           </form>
 
@@ -42,7 +43,7 @@
  {% if curr_user %}
     <div class="user_profile text-center">
       <div class="first_letter">
-        {{curr_user['fullname'][0]}}
+        {{curr_user['fullname'][0].upper()}}
       </div>
       <span class="userDetail">
         {{curr_user['username']}}
@@ -51,6 +52,7 @@
         <br>
         {{curr_user['phone']}}
       </span>
+      <a href="{{url_for('login')}}" class="btn btn-sm btn-danger mt-3" role="button"> Log-Out</a>
     </div>
     {% endif %}
 {% endblock %}

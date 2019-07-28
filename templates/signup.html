@@ -9,7 +9,7 @@
   {% block bodyMain %}
       <div class="formCont">
         {% if  note_msg %}
-          <form action="{{url_for('login')}}" method="post">
+          <form action="{{url_for('signup')}}" method="post">
             <input type="hidden" name="logout" value="logout">
             <div class="mx-auto">
               <button type="submit" class="btn-lg btn-primary mt-5 mx-auto d-block">Log-Out</button>
@@ -21,26 +21,27 @@
           <form action="{{url_for('signuphandler')}}" method="post">
               <div class="form-group row">
                 <label for="fullname" class="col-md-3">Full Name</label>
-                <input type="text" class="form-control col-md-8" name="fullname" id="fullname" aria-describedby="nameHelp" placeholder="Your Full Name">
+                <input type="text" class="form-control col-md-8" name="fullname" id="fullname" aria-describedby="nameHelp" placeholder="Your Full Name" pattern=".{5,}" title="fullname needs to be atleast 5 chars long" >
               </div>
               <div class="form-group row">
                 <label for="username" class="col-md-3">UserName</label>
-                <input type="text" class="form-control col-md-8" name="username" id="username" aria-describedby="nameHelp" placeholder="Pick a Username">
+                <input type="text" class="form-control col-md-8" name="username" id="username" aria-describedby="nameHelp" placeholder="Pick a Username" pattern=".{5,}" title="Usernameneeds to be atleast 5 chars long">
               </div>
               <div class="form-group row">
                 <label for="email" class="col-md-3">Email address</label>
-                <input type="email" class="form-control col-md-8" name="email" id="email" aria-describedby="emailHelp" placeholder="Your Email ID">
+                <input type="email" class="form-control col-md-8" name="email" id="email" aria-describedby="emailHelp" placeholder="Your Email ID" pattern=".{5,}" title="email needs to be atleast 5 chars long">
               </div>
               <div class="form-group row">
                 <label for="phone" class="col-md-3">Telephone</label>
-                  <input class="form-control col-md-8" placeholder='+91 8368926409' type="tel" value="" name="phone" id="phone">
+                  <input class="form-control col-md-8" placeholder='+91 8368926409' type="tel" value="" name="phone" id="phone" >
               </div>
               <div class="form-group row">
-                <label for="password" class="col-md-3" pattern=".{5,}"   required title="Password needs to be atleast 5 chars long">Password</label>
-                <input type="password" class="form-control col-md-8" name="password" id="password" placeholder="Password">
+                <label for="password" class="col-md-3">Password</label>
+                <input type="password" class="form-control col-md-8" name="password" id="password" placeholder="Password"  pattern=".{5,}"   required title="Password needs to be atleast 5 chars long">
               </div>
-              <div class="mx-auto">
-                <button type="submit" class="btn-lg btn-primary mt-5 mx-auto d-block">Sign-In</button>
+              <div class="mx-auto text-center">
+                <button type="submit" class="btn btn-lg btn-primary mt-5 mx-2 d-inline-block">Sign-In</button>
+                <a href="{{url_for('login')}}" class="btn btn-lg btn-primary mt-5 mx-2 d-inline-block" role="button" >Log-In</a>
               </div>
           </form>
         {% endif %}
@@ -51,7 +52,7 @@
    {% if curr_user %}
       <div class="user_profile text-center">
         <div class="first_letter">
-          {{curr_user['fullname'][0]}}
+          {{curr_user['fullname'][0].upper()}}
         </div>
         <span class="userDetail">
           {{curr_user['username']}}
@@ -60,6 +61,7 @@
           <br>
           {{curr_user['phone']}}
         </span>
+        <a href="{{url_for('login')}}" class="btn btn-sm btn-danger mt-3" role="button"> Log-Out</a>
       </div>
       {% endif %}
   {% endblock %}

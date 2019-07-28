@@ -23,7 +23,7 @@
  {% if curr_user %}
     <div class="user_profile text-center">
       <div class="first_letter">
-        {{curr_user['fullname'][0]}}
+        {{curr_user['fullname'][0].upper()}}
       </div>
       <span class="userDetail">
         {{curr_user['username']}}
@@ -32,6 +32,7 @@
         <br>
         {{curr_user['phone']}}
       </span>
+      <a href="{{url_for('login')}}" class="btn btn-sm btn-danger mt-3" role="button"> Log-Out</a>
     </div>
     {% endif %}
 {% endblock %}

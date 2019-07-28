@@ -38,9 +38,14 @@ def signuphandler():
         return redirect(url_for('signup',error_msg = validate_status))
 
 
-@app.route('/signup')
-@app.route('/signup/<error_msg>') # this route is invoked by singuphandler if some error occurs
+@app.route('/signup',methods=['GET','POST'])
+@app.route('/signup/<error_msg>',methods=['GET','POST']) # this route is invoked by singuphandler if some error occurs
 def signup(error_msg=None):
+    # condition to check if a logout is initiated from signup page
+    if request.method =='POST' and request.form.get('logout'):
+        session['curr_user'] = None
+        return render_template('signup.html')
+
     if not session.get('curr_user'):
         return render_template('signup.html',error_msg=error_msg)
     else:

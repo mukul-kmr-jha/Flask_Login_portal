@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Users List
+{% endblock %}
+
+{% block heading %}
+<div class="headline text-center">
+  <h2>List Of Users</h2>
+   <p style="color:red;">{{error_msg}}</p>
+</div>
+{% endblock %}
+
+{% block bodyMain %}
+    <ul class="list-group list-group-flush">
+        {% for user in users %}
+            <li class="list-group-item text-center">{{user.username}} :: {{user.email}} :: {{user.phone}} </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block userProfile %}
+ {% if curr_user %}
+    <div class="user_profile text-center">
+      <div class="first_letter">
+        {{curr_user['fullname'][0]}}
+      </div>
+      <span class="userDetail">
+        {{curr_user['username']}}
+        <br>
+        {{curr_user['email']}}
+        <br>
+        {{curr_user['phone']}}
+      </span>
+    </div>
+    {% endif %}
+{% endblock %}

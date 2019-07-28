@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+  {% block title %}
+    Home Page
+  {% endblock %}
+
+  {% block heading %}
+      <div class="text-center mx-auto">
+        <h2 class="d-inline-block">Sign-In  <a href="{{url_for('signup')}}">Here</a></h2>
+        <span class=" h1 d-inline-block mx-5">OR</span>
+        <h2 class="d-inline-block">Login <a href="{{url_for('login')}}">Here</a></h2>
+      </div>
+  {% endblock %}
+
+  {% block userProfile %}
+   {% if curr_user %}
+      <div class="user_profile text-center">
+        <div class="first_letter">
+          {{curr_user['fullname'][0]}}
+        </div>
+        <span class="userDetail">
+          {{curr_user['username']}}
+          <br>
+          {{curr_user['email']}}
+          <br>
+          {{curr_user['phone']}}
+        </span>
+      </div>
+      {% endif %}
+  {% endblock %}

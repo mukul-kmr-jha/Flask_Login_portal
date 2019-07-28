@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+  {% block title %}Signup Page {% endblock %}
+  {% block heading %}
+      <div class="headline text-center">
+        <h2>Welcome to Signup Page </h2>
+        <p style="color:red;">{{ error_msg or note_msg}}</p>
+      </div>
+  {% endblock %}
+  {% block bodyMain %}
+      <div class="formCont">
+        {% if  note_msg %}
+          <form action="{{url_for('login')}}" method="post">
+            <input type="hidden" name="logout" value="logout">
+            <div class="mx-auto">
+              <button type="submit" class="btn-lg btn-primary mt-5 mx-auto d-block">Log-Out</button>
+            </div>
+          </form>
+
+        {% else %}
+
+          <form action="{{url_for('signuphandler')}}" method="post">
+              <div class="form-group row">
+                <label for="fullname" class="col-md-3">Full Name</label>
+                <input type="text" class="form-control col-md-8" name="fullname" id="fullname" aria-describedby="nameHelp" placeholder="Your Full Name">
+              </div>
+              <div class="form-group row">
+                <label for="username" class="col-md-3">UserName</label>
+                <input type="text" class="form-control col-md-8" name="username" id="username" aria-describedby="nameHelp" placeholder="Pick a Username">
+              </div>
+              <div class="form-group row">
+                <label for="email" class="col-md-3">Email address</label>
+                <input type="email" class="form-control col-md-8" name="email" id="email" aria-describedby="emailHelp" placeholder="Your Email ID">
+              </div>
+              <div class="form-group row">
+                <label for="phone" class="col-md-3">Telephone</label>
+                  <input class="form-control col-md-8" placeholder='+91 8368926409' type="tel" value="" name="phone" id="phone">
+              </div>
+              <div class="form-group row">
+                <label for="password" class="col-md-3" pattern=".{5,}"   required title="Password needs to be atleast 5 chars long">Password</label>
+                <input type="password" class="form-control col-md-8" name="password" id="password" placeholder="Password">
+              </div>
+              <div class="mx-auto">
+                <button type="submit" class="btn-lg btn-primary mt-5 mx-auto d-block">Sign-In</button>
+              </div>
+          </form>
+        {% endif %}
+          </div>
+  {% endblock %}
+
+  {% block userProfile %}
+   {% if curr_user %}
+      <div class="user_profile text-center">
+        <div class="first_letter">
+          {{curr_user['fullname'][0]}}
+        </div>
+        <span class="userDetail">
+          {{curr_user['username']}}
+          <br>
+          {{curr_user['email']}}
+          <br>
+          {{curr_user['phone']}}
+        </span>
+      </div>
+      {% endif %}
+  {% endblock %}

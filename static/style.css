@@ -1,0 +1,44 @@
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+}
+.headline{
+  margin-bottom:60px;
+}
+
+.formCont{
+    width:500px;
+    margin: 10px auto;
+}
+
+.user_profile{
+  position:absolute;
+  top:40px;
+  right:40px;
+  width:60px;
+  height: 60px;
+  border:2px solid rebeccapurple;
+  border-radius:50%;
+}
+.first_letter{
+  color:palevioletred;
+  font-size: 36px;
+  font-weight: 600;
+}
+.user_profile:hover .userDetail{
+  display:block;
+}
+.userDetail{
+  display:none;
+  position: absolute;
+  color:palevioletred;
+  top: -12px;
+  right: 76px;
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 7px 15px;
+  transition:all 0.5s;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+  {% block title %} User Page {% endblock %}
+
+  {% block heading %}
+  <div class="heading text-center">
+    {% if curr_user %}
+      <h1>Hello, <b style="color:palevioletred;">{{curr_user['username']}}</b> Welcome Back ! </h1>
+      <p> Check the complete list of <a href="{{url_for('users')}}">Users</a></p>
+    {% else %}
+      <h1>Please <a href="{{url_for('signup')}}">Sign-up</a> OR <a href="{{url_for('login')}}">Log-In</a></h1>
+    {% endif %}
+
+  </div>
+  {% endblock %}
+
+{% block userProfile %}
+   {% if curr_user %}
+      <div class="user_profile text-center">
+        <div class="first_letter">
+          {{curr_user['fullname'][0]}}
+        </div>
+        <span class="userDetail">
+          {{curr_user['username']}}
+          <br>
+          {{curr_user['email']}}
+          <br>
+          {{curr_user['phone']}}
+        </span>
+      </div>
+      {% endif %}
+{% endblock %}

@@ -6,7 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # config for SQLAlchemy
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+basedir = os.path.dirname(os.path.realpath(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
 # Required for using session
 app.secret_key = "some_secret_key"
 db = SQLAlchemy(app)

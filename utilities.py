@@ -1,3 +1,5 @@
+from appconfig import User
+
 # Validate the sign-in form data
 def is_valid_data(fullname,username,email,phone,password):
     # check if the values are empty

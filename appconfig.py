@@ -1,11 +1,12 @@
 import uuid
+import os
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # config for SQLAlchemy
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/flask_app_1'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 # Required for using session
 app.secret_key = "some_secret_key"
 db = SQLAlchemy(app)

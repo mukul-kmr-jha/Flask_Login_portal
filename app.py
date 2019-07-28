@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, url_for, redirect, session
 
 from appconfig import app, db, User
@@ -96,4 +97,4 @@ def user():
     else:
         return render_template('user.html',note_msg='Please Log-In/Signup First !')
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=environ.get("PORT", 5000))
+    app.run(host='0.0.0.0',port=os.environ.get("PORT", 5000))
